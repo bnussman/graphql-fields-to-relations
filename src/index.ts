@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import graphqFields from 'graphql-fields';
+import { graphqlFields } from './fields';
 
 const fieldsToRelations = (
   info: GraphQLResolveInfo,
@@ -36,10 +36,10 @@ const fieldsToRelations = (
   };
 
   const value = !options.root
-    ? graphqFields(info, {}, { excludedFields: options.excludeFields })
+    ? graphqlFields(info, {}, { excludedFields: options.excludeFields })
     : options.root.split('.').reduce(function (p, prop) {
         return p[prop];
-      }, graphqFields(info, {}, { excludedFields: options.excludeFields }));
+      }, graphqlFields(info, {}, { excludedFields: options.excludeFields }));
 
   nested(value, !!options.root ? options.root.split('.').pop() : undefined);
 
