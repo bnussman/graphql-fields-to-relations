@@ -1,14 +1,15 @@
 import { GraphQLResolveInfo } from 'graphql';
 import { graphqlFields } from './fields';
+import type { Populate } from '@mikro-orm/core';
 
-const fieldsToRelations = (
+const fieldsToRelations = <Entity>(
   info: GraphQLResolveInfo,
   options: { depth?: number; root?: string; excludeFields?: string[] } = {
     depth: undefined,
     root: '',
     excludeFields: [],
   },
-): string[] => {
+): Populate<Entity, string> => {
   const paths: string[][] = [];
 
   const nested = (field: any, key: string = undefined as any, deep = 0, parent: string[] = []) => {
@@ -43,7 +44,7 @@ const fieldsToRelations = (
 
   nested(value, !!options.root ? options.root.split('.').pop() : undefined);
 
-  return paths.map((list: string[]) => list.join('.'));
+  return paths.map((list: string[]) => list.join('.')) as unknown as Populate<Entity, string>;
 };
 
 // why not export default?

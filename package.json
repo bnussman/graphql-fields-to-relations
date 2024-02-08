@@ -1,7 +1,7 @@
 {
-  "name": "@banksnussman/graphql-fields-to-relations",
+  "name": "@bnussman/graphql-fields-to-relations",
   "description": "Resolve your graphql fields to (MikroOrm) relations",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "keywords": [
     "graphql-fields",
     "mikro-orm",
@@ -26,6 +26,7 @@
     "graphql": "^16.6.0"
   },
   "devDependencies": {
+    "@mikro-orm/core": "^6.1.0",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
     "eslint": "^8.27.0",
